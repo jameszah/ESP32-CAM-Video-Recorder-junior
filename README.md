@@ -22,6 +22,7 @@ v04 - added wifi, time, stream @ 5 fps, and photos at 1 fps
      jamzah.plc@gmail.com
 
   https://github.com/jameszah/ESP32-CAM-Video-Recorder-junior
+  
   https://github.com/jameszah/ESP32-CAM-Video-Recorder
 
     jameszah/ESP32-CAM-Video-Recorder is licensed under the
