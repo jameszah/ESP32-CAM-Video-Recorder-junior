@@ -11,7 +11,7 @@ ESP32-CAM-Video-Recorder-junior
 ## Update Sep 13, 2020 - adding complexity
 v02 - basic version
  
-v04 - added wifi, time, stream @ 5 fps, and photos at 1 fps
+v04 - added wifi, time, stream @ 5 fps, and photos @ 1 fps
     - you need to add your wifi ssid and password below 
     - if you walk away from your wifi, then wifi will fail and continue recording
     - if you walk back to your wifi -- I think it will not recover until reboot
