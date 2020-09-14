@@ -7,6 +7,17 @@ ESP32-CAM-Video-Recorder-junior
   
   You can just compile, download, power-on ... and it will record a series of 3 minute, SVGA videos on your SD card ... while you read on ...
 
+
+## Update Sep 13, 2020 - adding complexity
+v02 - basic version
+ 
+v04 - added wifi, time, stream @ 5 fps, and photos at 1 fps
+    - you need to add your wifi ssid and password below 
+    - if you walk away from your wifi, then wifi will fail and continue recording
+    - if you walk back to your wifi -- I think it will not recover until reboot
+
+ ## Original Sep 12, 2020 
+ 
   by James Zahary Sep 12, 2020
      jamzah.plc@gmail.com
 
@@ -22,12 +33,6 @@ ESP32-CAM-Video-Recorder-junior
   The is Arduino code, with standard setup for ESP32-CAM
     - Board ESP32 Wrover Module
     - Partition Scheme Huge APP (3MB No OTA)
-
-Compiled with Arduino 1.8.12, which used these libraries:
-
-    Using library SD_MMC at version 1.0 in folder:  C:\Users\James\AppData\Local\Arduino15\packages\esp32\hardware\esp32\1.0.4\libraries\SD_MMC 
-    Using library FS at version 1.0 in folder:  C:\Users\James\AppData\Local\Arduino15\packages\esp32\hardware\esp32\1.0.4\libraries\FS 
-    Using library EEPROM at version 1.0.3 in folder: C:\Users\James\AppData\Local\Arduino15\packages\esp32\hardware\esp32\1.0.4\libraries\EEPROM 
 
   It is the junior version of   https://github.com/jameszah/ESP32-CAM-Video-Recorder
   which has 100 other features of wifi, streaming video, http control, telegram updates, pir control,
