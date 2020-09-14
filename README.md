@@ -12,9 +12,15 @@ ESP32-CAM-Video-Recorder-junior
 v02 - basic version
  
 v04 - added wifi, time, stream @ 5 fps, and photos @ 1 fps
-    - you need to add your wifi ssid and password below 
-    - if you walk away from your wifi, then wifi will fail and continue recording
-    - if you walk back to your wifi -- I think it will not recover until reboot
+ - you need to add your wifi ssid and password below  
+ - if you walk away from your wifi, then wifi wont work, but recording continues
+ - if you are away from wifi at boot time, it wont have wifi, but you will record the events of January 1970
+ - the main web page just shows your available disk space, and your wifi signal strengh, deleting lots of stats from the other version
+ - the stream function shows a moving picture in one window, that you can watch or record on your computer using VLC etc.  With bad wifi, you could slow the 5 fps to 1 or 2 fps, by replacing the delay(200) with a longer delay 
+ - the photos function shows a series of photos 1 second apart for 15 seconds, that you can scroll through on your web browser and save a jpg, or refresh for another 15 second group
+ - both the streaming and the photos use the same images that are stored in the avi file, so it should not affect the frame-rate of the recording on the sd, but you might see partial images if you have slow wifi and the sd writer deletes the image while it it being transmitted.  Let me know of problems in the comments. :smiley:
+ 
+<img src="./web_v04.jpg">
 
  ## Original Sep 12, 2020 
  
