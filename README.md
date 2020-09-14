@@ -7,6 +7,28 @@ ESP32-CAM-Video-Recorder-junior
   
   You can just compile, download, power-on ... and it will record a series of 3 minute, SVGA videos on your SD card ... while you read on ...
 
+  by James Zahary Sep 12, 2020
+     jamzah.plc@gmail.com
+
+  https://github.com/jameszah/ESP32-CAM-Video-Recorder-junior
+  https://github.com/jameszah/ESP32-CAM-Video-Recorder
+
+    jameszah/ESP32-CAM-Video-Recorder is licensed under the
+    GNU General Public License v3.0
+
+    jameszah/ESP32-CAM-Video-Recorder-junior is licensed under the
+    GNU General Public License v3.0
+
+  The is Arduino code, with standard setup for ESP32-CAM
+    - Board ESP32 Wrover Module
+    - Partition Scheme Huge APP (3MB No OTA)
+
+Compiled with Arduino 1.8.12, which used these libraries:
+
+    Using library SD_MMC at version 1.0 in folder:  C:\Users\James\AppData\Local\Arduino15\packages\esp32\hardware\esp32\1.0.4\libraries\SD_MMC 
+    Using library FS at version 1.0 in folder:  C:\Users\James\AppData\Local\Arduino15\packages\esp32\hardware\esp32\1.0.4\libraries\FS 
+    Using library EEPROM at version 1.0.3 in folder: C:\Users\James\AppData\Local\Arduino15\packages\esp32\hardware\esp32\1.0.4\libraries\EEPROM 
+
   It is the junior version of   https://github.com/jameszah/ESP32-CAM-Video-Recorder
   which has 100 other features of wifi, streaming video, http control, telegram updates, pir control,
   touch control, ftp downloads, .... and other things that make it very big and complex.
@@ -53,24 +75,3 @@ ESP32-CAM-Video-Recorder-junior
   Small red led on the back blinks with every frame.
 
 
-  by James Zahary Sep 12, 2020
-     jamzah.plc@gmail.com
-
-  https://github.com/jameszah/ESP32-CAM-Video-Recorder-junior
-  https://github.com/jameszah/ESP32-CAM-Video-Recorder
-
-    jameszah/ESP32-CAM-Video-Recorder is licensed under the
-    GNU General Public License v3.0
-
-    jameszah/ESP32-CAM-Video-Recorder-junior is licensed under the
-    GNU General Public License v3.0
-
-  The is Arduino code, with standard setup for ESP32-CAM
-    - Board ESP32 Wrover Module
-    - Partition Scheme Huge APP (3MB No OTA)
-
-Compiled with Arduino 1.8.12, which used these libraries:
-
-    Using library SD_MMC at version 1.0 in folder:  C:\Users\James\AppData\Local\Arduino15\packages\esp32\hardware\esp32\1.0.4\libraries\SD_MMC 
-    Using library FS at version 1.0 in folder:  C:\Users\James\AppData\Local\Arduino15\packages\esp32\hardware\esp32\1.0.4\libraries\FS 
-    Using library EEPROM at version 1.0.3 in folder: C:\Users\James\AppData\Local\Arduino15\packages\esp32\hardware\esp32\1.0.4\libraries\EEPROM 
