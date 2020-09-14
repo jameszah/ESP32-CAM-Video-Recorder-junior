@@ -58,7 +58,7 @@ Compiled with Arduino 1.8.12, which used these libraries:
   In bright outdoor light - looking at the sun - it will slow down by half - to about 12 fps SVGA.  You could lower quality to keep that
   at a higher fps, if you insist on looking at the sun.
 
-  Using a dollarstore SD card - EAGET circle10, U1 - it will record at about half of the camera capacity.
+  Using a dollarstore SD card - EAGET circle10, U1 - it will record at about half of the camera capacity -- in dull indoor light.
 
   You can look at the blinking red led on the back of the chip to see the recording rate -- sd chips for video are made to be more predictable.
 
