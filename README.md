@@ -20,6 +20,9 @@ v04 - added wifi, time, stream @ 5 fps, and photos @ 1 fps
  - the photos function shows a series of photos 1 second apart for 15 seconds, that you can scroll through on your web browser and save a jpg, or refresh for another 15 second group
  - both the streaming and the photos use the same images that are stored in the avi file, so it should not affect the frame-rate of the recording on the sd, but you might see partial images if you have slow wifi and the sd writer deletes the image while it it being transmitted.  Let me know of problems in the comments. :smiley:
  
+ v04a - bugfix to the streaming when used in poor wifi situations
+ - more stats on the webpage to keep track of fps
+ 
 <img src="./web_v04.jpg">
 
  ## Original Sep 12, 2020 
@@ -55,7 +58,13 @@ v04 - added wifi, time, stream @ 5 fps, and photos @ 1 fps
      Release Pin 12 and it will record forever.
 
   Compile Time Parameters
-  1.  framesize 10,9,7,6,5 for 10 - UXGA (1600x1200 @ 6 fps), 9 - SXGA (1280x1024 @ 6 fps), 7 - SVGA(800x600 @ 24 fps), 6 - VGA(640x480 @ 24 fps), 5 - CIF(400x296 @ 50 fps)
+  1.  framesize 10,9,7,6,5: 
+  
+    10 - UXGA (1600x1200 @ 6 fps), 
+    9 - SXGA (1280x1024 @ 6 fps), 
+    7 - SVGA(800x600 @ 24 fps), 
+    6 - VGA(640x480 @ 24 fps), 
+    5 - CIF(400x296 @ 50 fps)
   2.  quality - 1 to 63 - 10 is a good start, increase to 20 to get more frames per second - must be higher than jpeg_quality below
   3.  avi_length - seconds for each avi - it closes files, and starts another file after this time - like 60 or 1800
   4.  devname - a text name for your camera when the files are on your computer
