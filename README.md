@@ -59,12 +59,12 @@ v04 - added wifi, time, stream @ 5 fps, and photos @ 1 fps
 
   Compile Time Parameters
   1.  framesize 10,9,7,6,5: 
-  
-    10 - UXGA (1600x1200 @ 6 fps), 
-    9 - SXGA (1280x1024 @ 6 fps), 
-    7 - SVGA(800x600 @ 24 fps), 
-    6 - VGA(640x480 @ 24 fps), 
-    5 - CIF(400x296 @ 50 fps)
+   10 - UXGA (1600x1200 @ 6 fps), 
+   9 - SXGA (1280x1024 @ 6 fps), 
+   7 - SVGA(800x600 @ 24 fps), 
+   6 - VGA(640x480 @ 24 fps), 
+   5 - CIF(400x296 @ 50 fps)
+   
   2.  quality - 1 to 63 - 10 is a good start, increase to 20 to get more frames per second - must be higher than jpeg_quality below
   3.  avi_length - seconds for each avi - it closes files, and starts another file after this time - like 60 or 1800
   4.  devname - a text name for your camera when the files are on your computer
