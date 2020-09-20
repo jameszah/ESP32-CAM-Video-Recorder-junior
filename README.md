@@ -8,6 +8,13 @@ ESP32-CAM-Video-Recorder-junior
   You can just compile, download, power-on ... and it will record a series of 3 minute, SVGA videos on your SD card ... while you read on ...
 
 
+## Update Sep 20, 2020 - very fast
+v07 - faster version - should operate at full speed of camera
+ - internet shut off by default -- edit define to 1, then ssid and pass
+  - default is svga, quality 10, 5 minute video -- 25 fps and realtime
+  - this make files about 80 MB per minute, so 200 minutes for 16GB chip
+  - lower the quality to get smaller files!
+
 ## Update Sep 13, 2020 - adding complexity
 v02 - basic version
  
