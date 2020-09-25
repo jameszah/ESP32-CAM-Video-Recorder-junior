@@ -17,6 +17,7 @@ v09 - faster version - controlled by switches
 - at SVGA 25fps, quality 12 in the sunshine, you get files of 1.5 GB per 30 minutes - so reduce quality, switch to lower framesize, or go to the timelapse system of 1 frame per second or 10 frames per second, etc to get smaller files
 - these are mjpeg avi files, so each frame is an independent jpeg, so you can extract them all, but you do not get the size benefits of h264 or xvid, etc 
 - the pictures below show how to see streaming video, or a series of frames on your browser
+- filenames are now "desklens10.003.avi" so they are easy to deal with.  "desklens" is your device name, 10 is the 10th boot of your device, and 003 is the 3rd file made during this boot
 
 ## Update Sep 20, 2020 - very fast
 v07 - faster version - should operate at full speed of camera
