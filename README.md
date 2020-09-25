@@ -5,8 +5,18 @@ ESP32-CAM-Video-Recorder-junior
 
   This program records an mjpeg avi video to the sd card of an ESP32-CAM.
   
-  You can just compile, download, power-on ... and it will record a series of 3 minute, SVGA videos on your SD card ... while you read on ...
+  You can just compile, download, power-on ... and it will record a series of 30 minute, SVGA videos on your SD card ... while you read on ...
 
+## Update Sep 24, 2020 - ESP32-CAM "gopro"
+v09 - faster version - controlled by switches
+<img src="./v09_schematic.jpg">
+<img src="./v09_hardware.jpg">
+
+- the Interest is shut off by default, so you #define IncludeInternet to 1, and put in your ssid and password
+- if you have no switches attached to gpio12 and gpio13, then they will not be grounded and it will "record" and "svga 25fps"
+- at SVGA 25fps, quality 12 in the sunshine, you get files of 1.5 GB per 30 minutes - so reduce quality, switch to lower framesize, or go to the timelapse system of 1 frame per second or 10 frames per second, etc to get smaller files
+- these are mjpeg avi files, so each frame is an independent jpeg, so you can extract them all, but you do not get the size benefits of h264 or xvid, etc 
+- the pictures below show how to see streaming video, or a series of frames on your browser
 
 ## Update Sep 20, 2020 - very fast
 v07 - faster version - should operate at full speed of camera
