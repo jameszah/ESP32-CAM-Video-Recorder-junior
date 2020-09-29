@@ -7,6 +7,16 @@ ESP32-CAM-Video-Recorder-junior
   
   You can just compile, download, power-on ... and it will record a series of 30 minute, SVGA videos on your SD card ... while you read on ...
 
+## Update Sep 28, 2020 - ESP32-CAM "GOPRO"
+v10 - fast and just one version
+
+- default is no internet, and record at SVGA at 25 fps, quality 10, and series of 30 minute videos
+- add IncludeInternet to 1, and put in your ssid and password, to get live streaming
+- add switches to pin 12 and 13, if you want to stop recording, or switch to another configuration -- no software changes required
+- if you ground pin 12, recording will stop
+- if you ground pin 13, the next video will be UXGA 6 fps, quality 10, 30 minutes -- or change in the code if you like
+- old files in the /old folder
+
 ## Update Sep 24, 2020 - ESP32-CAM "gopro"
 v09 - faster version - controlled by switches
 <img src="./v09_schematic.jpg">
