@@ -1179,9 +1179,9 @@ static esp_err_t stream_handler(httpd_req_t *req) {
       return res;
     }
 
-    if (fb_next == NULL) {
-      esp_camera_fb_return(fb);
-    }
+    //if (fb_next == NULL) {
+    //  esp_camera_fb_return(fb);
+    //}
 
     delay(200);       // 200 ms = 5 fps !!!
   }
