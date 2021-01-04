@@ -7,6 +7,18 @@ ESP32-CAM-Video-Recorder-junior
   
   You can just compile, download, power-on ... and it will record a series of 30 minute, SVGA videos on your SD card ... while you read on ...
 
+## Update Jan 04, 2021 - Streaming GOPRO with WiFiManager 
+v10x-wifiman - added WiFiManager to set your wifi ssid and password using your phone
+ - use the normal WiFiManager procedure to set up ssid with 192.168.4.1 etc
+ https://github.com/tzapu/WiFiManager
+ 
+ You must use the latest WiFiManager code which supports the ESP32 - currently 2.0.3-alpha which can be installed from Arduino IDE - Manage Libraries. And you must reboot the esp32 after you have set the ssid.
+ 
+ Some other new stuff in the comments - a version that adds back the ftp, and a version that slows down the recording for timelapses, or just lower framerates to save SD card space.
+ 
+
+https://github.com/jameszah/ESP32-CAM-Video-Recorder-junior/blob/master/ESP32-CAM-Video-Recorder-junior-10x.wifiman.ino
+
 ## Update Sep 28, 2020 - ESP32-CAM "GOPRO"
 v10 - fast and just one version
 
