@@ -95,8 +95,8 @@ static const char vernum[] = "v10x-wifiman";
 static const char devname[] = "desklens";         // name of your camera for mDNS, Router, and filenames
 
 #define IncludeInternet 1               // if you want internet/wifi, change the to 1, and put in your wifi name/pass             
-bool InternetFailed = false;
-const char* ssid = "jzjzjz";
+bool InternetFailed = false;            
+const char* ssid = "jzjzjz";            // but with WiFiManager, you set it from your phone, not in here!
 const char* password = "jzjzjz";
 
 // https://sites.google.com/a/usapiens.com/opnode/time-zones  -- find your timezone here
