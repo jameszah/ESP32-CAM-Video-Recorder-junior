@@ -947,8 +947,8 @@ bool init_wifi()
     bool res;
     //wm.resetSettings();  // for debugging
 
-    // wm.setConnectTimeout(20); // how long to try to connect for before continuing
-    // wm.setConfigPortalTimeout(30); // auto close configportal after n seconds
+     wm.setConnectTimeout(20); // how long to try to connect for before continuing
+     wm.setConfigPortalTimeout(30); // auto close configportal after n seconds
     // res = wm.autoConnect(); // auto generated AP name from chipid
     
     res = wm.autoConnect(devname); // use the devname defined above, with no password
