@@ -26,6 +26,9 @@ Ground pin 12, so stop recording.  And ground pin 13 to enable disable wifi, usi
 
 Has the file delete code included, so it will delete old videos as long as the camera is running.
 
+Also, this has tasks and mutexes and priorities, in defiance of the original design.  All that makes sure that the camera and the sd and the wifi, can all operate at full speed without blocking each other.  You can record the streaming video with VLC on your coomputer if you like.
+
+
 ## Update Jan 04, 2021 - Streaming GOPRO with WiFiManager 
 v10x-wifiman - added WiFiManager to set your wifi ssid and password using your phone
  - use the normal WiFiManager procedure to set up ssid with 192.168.4.1 etc
