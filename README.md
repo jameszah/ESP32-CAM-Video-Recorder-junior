@@ -22,6 +22,8 @@ There is a issue with the esp32 camera and wifi that interact, so when the wifi 
 
 The config.txt has parameters to run without wifi, or start wifi to get the current time and then shut off, or use WiFi-Man wifi with streaming, or use WiFi ssid from the config file, and have it controlled with the pin 13 switch, to switch it on to look through the viewfinder, then switch it off to get a perfect recording.
 
+Ground pin 12, so stop recording.  And ground pin 13 to enable disable wifi, using the same hardware defined below.
+
 Has the file delete code included, so it will delete old videos as long as the camera is running.
 
 ## Update Jan 04, 2021 - Streaming GOPRO with WiFiManager 
