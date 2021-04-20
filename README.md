@@ -5,7 +5,24 @@ ESP32-CAM-Video-Recorder-junior
 
   This program records an mjpeg avi video to the sd card of an ESP32-CAM.
   
-  You can just compile, download, power-on ... and it will record a series of 30 minute, SVGA videos on your SD card ... while you read on ...
+  You can just compile, download, power-on ... and it will record a series of 30 minute, HD videos, 12.5 fps on your SD card ... while you read on ...
+
+## Update Apr 19, 2021 - v50 for Arduino 1.8.13, and esp32-arduino core 1.06
+Updated version I have been using.
+
+Uses the current Arduino IDE 1.8.13, and the current esp32-arduino core 1.06, which handles the ov5640 camera in additon to the normal ov2640.
+
+Framerates have improved - the ov2640 will record at 12.5 fps on regular HD 1280x720.
+
+Also you can put a config file onto the SD card, called config.txt which will set all the parameters of the recording.  See the config.txt file included here.  So you can compile and install the version here, and then control everything by editing config.txt on the SD card.  Much simpler even if you are working at your dev computer.
+
+You can run full-speed at any framesize and quality, or timelapse, and stream or not stream as desired.
+
+There is a issue with the esp32 camera and wifi that interact, so when the wifi is turned on, you will have an occasional broken frame -- one frame of the movie that will look odd.  If you shut off the wifi, it should be perfect.
+
+The config.txt has parameters to run without wifi, or start wifi to get the current time and then shut off, or use WiFi-Man wifi with streaming, or use WiFi ssid from the config file, and have it controlled with the pin 13 switch, to switch it on to look through the viewfinder, then switch it off to get a perfect recording.
+
+Has the file delete code included, so it will delete old videos as long as the camera is running.
 
 ## Update Jan 04, 2021 - Streaming GOPRO with WiFiManager 
 v10x-wifiman - added WiFiManager to set your wifi ssid and password using your phone
