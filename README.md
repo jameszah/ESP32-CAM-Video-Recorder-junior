@@ -7,6 +7,17 @@ ESP32-CAM-Video-Recorder-junior
   
   You can just compile, download, power-on ... and it will record a series of 30 minute, HD videos, 12.5 fps on your SD card ... while you read on ...
 
+## Update May 13, 2021 - v50lpmod for Arduino 1.8.13, and esp32-arduino core 1.06 - mod to fix broken jpeg
+This is the same as the last version with a small mod to fix the broken jpeg problem.  The critical line is here:
+
+esp_err_t set_ps = esp_wifi_set_ps(WIFI_PS_NONE);
+
+It sets the modem to no power saving.  The power saving had put the modem to sleep for a time, and when it awoke, it caused a disturbance in the i2s system (my theory), that caused the i2s camera to become confused, and create a bad jpeg.
+
+Read more here for my journey to this solution (2-3 months I think!)
+
+https://github.com/espressif/esp32-camera/issues/244#issuecomment-831561336
+
 ## Update Apr 19, 2021 - v50 for Arduino 1.8.13, and esp32-arduino core 1.06
 Updated version I have been using.
 
