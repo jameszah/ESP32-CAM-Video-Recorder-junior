@@ -7,6 +7,12 @@ ESP32-CAM-Video-Recorder-junior
   
   You can just compile, download, power-on ... and it will record a series of 30 minute, HD videos, 12.5 fps on your SD card ... while you read on ...
 
+## Update Jun 10, 2021 - new program to check out
+
+It records a video and sends it to your Telegram account - no SD card!
+
+https://github.com/jameszah/ESP32-CAM-Video-Telegram
+
 ## Update May 13, 2021 - v50lpmod for Arduino 1.8.13, and esp32-arduino core 1.06 - mod to fix broken jpeg
 This is the same as the last version with a small mod to fix the broken jpeg problem.  The critical line is here:
 
