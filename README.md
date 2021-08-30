@@ -1,5 +1,5 @@
 # ESP32-CAM-Video-Recorder-junior
-Simple fast version of ESP32-CAM-Video-Recorder
+Simple fast version of https://github.com/jameszah/ESP32-CAM-Video-Recorder
 
 ESP32-CAM-Video-Recorder-junior
 
@@ -10,6 +10,11 @@ ESP32-CAM-Video-Recorder-junior
   Here is a timelapse sample, recorded and uploaded to Youtube.  The settings were framesize UXGA (13), quality 15, 1 fps, 1800 seconds long, speedup 30 times.  Click the image and it will take you to Youtube to see it.
   
 [![Click to see on Youtube](http://img.youtube.com/vi/tzMFukXsX6o/hqdefault.jpg)](http://www.youtube.com/watch?v=tzMFukXsX6o "Clouds from Youtube")
+
+Here is a realtime sample, recorded and uploaded to Youtube.  The settings were framesize HD (11), quality 14, max fps or zero interval, 30 seconds long, speedup 1 times.  It came out at about 12.4 fps. Lowering the quality slightly -- higher quality number -- will make the bytes per frame smaller, and keep the speed at the camera maximum of 12.5 fps for HD.  Click the image and it will take you to Youtube to see it.
+
+[![Click to see on Youtube](http://img.youtube.com/vi/SNbKu3UN2P8/hqdefault.jpg)](http://www.youtube.com/watch?v=SNbKu3UN2P8 "Birds from Youtube")
+
 
 ## Update Jun 10, 2021 - new program to check out
 
