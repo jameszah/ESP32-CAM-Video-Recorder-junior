@@ -28,6 +28,7 @@
 #include "SD_MMC.h"
 //#include "SPI.h"
 
+#include <time.h>  //jz feb2020
 
 
 WiFiServer ftpServer( FTP_CTRL_PORT );
@@ -145,7 +146,7 @@ void FtpServer::handleFTP()
     client.println("530 Timeout");
     millisDelay = millis() + 200;    // delay of 200 ms
     cmdStatus = 0;
-  }
+  } 
 }
 
 void FtpServer::clientConnected()
@@ -441,11 +442,42 @@ boolean FtpServer::processCommand()
           Serial.println("File Name = "+ fn);
           #endif
           fs = String(file.size());
+          
+          /*  jz feb2020 code from https://github.com/espressif/arduino-esp32/blob/master/libraries/SD_MMC/examples/SDMMC_time/SDMMC_time.ino
+           *   to implement file dates and times for the esp32 ftp
+           
+           
+           Serial.print("  FILE: ");
+            Serial.print(file.name());
+            Serial.print("  SIZE: ");
+            Serial.print(file.size());
+            time_t t= file.getLastWrite();
+            struct tm * tmstruct = localtime(&t);
+            Serial.printf("  LAST WRITE: %d-%02d-%02d %02d:%02d:%02d\n",(tmstruct->tm_year)+1900,( tmstruct->tm_mon)+1, tmstruct->tm_mday,tmstruct->tm_hour , tmstruct->tm_min, tmstruct->tm_sec);
+
+           */
+
+          time_t t= file.getLastWrite();  //jz
+          //struct tm * tmstruct = gmtime(&t);  //jz
+          struct tm * tmstruct = localtime(&t);  //jz
+          
           if(file.isDirectory()){
-            data.println( "01-01-2000  00:00AM <DIR> " + fn);
+            // jz start
+            char the_date[26];
+            sprintf(the_date, "%02d-%02d-%04d  %02d:%02dAM <DIR> ",( tmstruct->tm_mon)+1, tmstruct->tm_mday, (tmstruct->tm_year)+1900,tmstruct->tm_hour, tmstruct->tm_min);
+            data.println(the_date + fn);
+            //jz end
+            
+            //jz data.println( "01-01-2000  00:00AM <DIR> " + fn);
              //Serial.println( "01-01-2000  00:00AM <DIR> " + fn);
           } else {
-            data.println( "01-01-2000  00:00AM " + fs + " " + fn);
+            // jz start
+            char the_date[26];
+            sprintf(the_date, "%02d-%02d-%04d  %02d:%02d ",( tmstruct->tm_mon)+1, tmstruct->tm_mday, (tmstruct->tm_year)+1900,tmstruct->tm_hour, tmstruct->tm_min);
+            data.println(the_date + fs + " " + fn);
+            //jz end
+           
+            //jz data.println( "01-01-2000  00:00AM " + fs + " " + fn);
             //Serial.println( "01-01-2000  00:00AM " + fs + " " + fn);
 //          data.println( " " + fn );
           }
