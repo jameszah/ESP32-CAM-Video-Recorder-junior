@@ -1275,7 +1275,7 @@ bool init_wifi()
       if (connAttempts++ == 15) break;     // try for 15 seconds to get internet, then give up
     }
     configTime(0, 0, "pool.ntp.org");
-    char tzchar[50];
+    char tzchar[60];
     //Serial.printf("Str >%s<, Char >%s<\n",TIMEZONE,tzchar);
     TIMEZONE.toCharArray(tzchar, TIMEZONE.length());          // name of your camera for mDNS, Router, and filenames
     setenv("TZ", tzchar, 1);  // mountain time zone from #define at top
@@ -1330,7 +1330,7 @@ bool init_wifi()
       });
 
       configTime(0, 0, "pool.ntp.org");
-      char tzchar[40];
+      char tzchar[60];
       TIMEZONE.toCharArray(tzchar, TIMEZONE.length());          // name of your camera for mDNS, Router, and filenames
       setenv("TZ", tzchar, 1);  // mountain time zone from #define at top
       tzset();
