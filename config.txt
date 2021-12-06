@@ -8,7 +8,7 @@ desklens  // camera name for files, mdns, etc
 0  // interval - ms between frames - 0 for fastest, or 500 for 2fps, 10000 for 10 sec/frame
 1  // speedup - multiply framerate - 1 for realtime, 24 for record at 1fps, play at 24fps or24x
 0  // streamdelay - ms between streaming frames - 0 for fast as possible, 500 for 2fps 
-3  // 0 no internet, 1 get time then shutoff, 2 streaming, using wifiman, 3 for use names below default off, 4 names below default on
+4  // 0 no internet, 1 get time then shutoff, 2 streaming, using wifiman, 3 for use names below ground gpio 13 to enable internet, 4 names below ground gpio 13 to shut off
 MST7MDT,M3.2.0/2:00:00,M11.1.0/2:00:00  // timezone - this id mountain time, find timezone here https://sites.google.com/a/usapiens.com/opnode/time-zones
 ssid1234  // ssid
 mrpeanut  // ssid password
