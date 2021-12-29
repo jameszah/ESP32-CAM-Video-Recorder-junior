@@ -9,6 +9,15 @@ ESP32-CAM-Video-Recorder-junior
   
   Although if you put your ssid and password, and timezone into the config.txt file, and put that file on the SD card, things will be nicer!  You can read the comments in config.txt and set your desired recording length, framesize, and internet on/off in there.
 
+## Update Dec 28, 2021 - new version with http browser file tranfer to download movies 
+
+You need all the files from the v57 folder: https://github.com/jameszah/ESP32-CAM-Video-Recorder-junior/tree/master/v57
+Using this library to tranfer files to your computer or phone: https://github.com/jameszah/ESPxWebFlMgr/tree/master/esp32_sd_file_manager
+
+Stay tuned for instructions.
+
+---
+  
   Here is a timelapse sample, recorded and uploaded to Youtube.  The settings were framesize UXGA (13), quality 15, 1 fps, 1800 seconds long, speedup 30 times.  Click the image and it will take you to Youtube to see it.
   
 [![Click to see on Youtube](http://img.youtube.com/vi/tzMFukXsX6o/hqdefault.jpg)](http://www.youtube.com/watch?v=tzMFukXsX6o "Clouds from Youtube")
