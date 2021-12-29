@@ -11,8 +11,10 @@ ESP32-CAM-Video-Recorder-junior
 
 ## Update Dec 28, 2021 - new version with http browser file tranfer to download movies 
 
-You need all the files from the v57 folder: https://github.com/jameszah/ESP32-CAM-Video-Recorder-junior/tree/master/v57  
-Using this library to tranfer files to your computer or phone: https://github.com/jameszah/ESPxWebFlMgr/tree/master/esp32_sd_file_manager
+You need all the files from the v57 folder:   
+https://github.com/jameszah/ESP32-CAM-Video-Recorder-junior/tree/master/v57  
+Using this library to tranfer files to your computer or phone:   
+https://github.com/jameszah/ESPxWebFlMgr/tree/master/esp32_sd_file_manager
 
 Stay tuned for instructions.
 
