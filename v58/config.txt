@@ -1,0 +1,36 @@
+desklens  // camera name for files, mdns, etc
+11  // framesize 8=vga, 9=svga, 10=xga, 11=hd, 12=sxga, 13=uxga, 14=fhd, 17=qxga, 18=qhd, 21=qsxga 
+15  // quality 0-63, lower the better, 10 good start, must be higher than "quality config"
+13  // frame config - must be equal or higher than framesize
+5  / quality config - high q 0..5, med q 6..10, low q 11+
+3  // buffers - 1 is half speed of 3
+900  // length of video in seconds
+0  // interval - ms between frames - 0 for fastest, or 500 for 2fps, 10000 for 10 sec/frame
+1  // speedup - multiply framerate - 1 for realtime, 24 for record at 1fps, play at 24fps or24x
+0  // streamdelay - ms between streaming frames - 0 for fast as possible, 500 for 2fps 
+4  // 0 no internet, 1 get time then shutoff, 2 streaming, using wifiman, 3 for use names below ground gpio 13 to enable internet, 4 names below ground gpio 13 to shut off
+MST7MDT,M3.2.0/2:00:00,M11.1.0/2:00:00  // timezone - this id mountain time, find timezone here https://sites.google.com/a/usapiens.com/opnode/time-zones
+ssid1234  // ssid
+mrpeanut  // ssid password
+~~~~~~~~~~~~~
+Lines above are rigid - do not delete lines, must have 2 spaces after the number or string
+
+framesize <= frameconfig
+quality >= qualityconfig
+buffers 3 result in twice frame rate of buffers 1
+
+
+lapselens  // camera name for files, mdns, etc
+13  // framesize 8=vga, 9=svga, 10=xga, 11=hd, 12=sxga, 13=uxga, 14=fhd, 17=qxga, 18=qhd, 21=qsxga 
+15  // quality 0-63, lower the better, 10 good start, must be higher than "quality config"
+13  // frame config - must be equal or higher than framesize
+5  / quality config - high q 0..5, med q 6..10, low q 11+
+3  // buffers - 1 is half speed of 3
+1800  // length of video in seconds
+1000  // interval - ms between frames - 0 for fastest, or 500 for 2fps, 10000 for 10 sec/frame
+30  // speedup - multiply framerate - 1 for realtime, 24 for record at 1fps, play at 24fps or24x
+1000  // streamdelay - ms between streaming frames - 0 for fast as possible, 500 for 2fps 
+3  // 0 no internet, 1 get time then shutoff, 2 streaming, using wifiman, 3 for use names below default off, 4 names below default on
+MST7MDT,M3.2.0/2:00:00,M11.1.0/2:00:00  // timezone - this id mountain time, find timezone here https://sites.google.com/a/usapiens.com/opnode/time-zones
+ssid1234  // ssid
+mrpeanut  // ssid password
