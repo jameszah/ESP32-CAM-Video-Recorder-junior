@@ -15,6 +15,7 @@ You need all the files from the v58 folder:
 https://github.com/jameszah/ESP32-CAM-Video-Recorder-junior/tree/master/v58  
 
 esp32-arduino busted a few things (mutexes, some sd_mmc chnages)
+Obviously, you need the wifi running for all these wifi features - but you can do the simple recording with switch control without the wifi.
 
 The main screen is the same, except for the link to the esp32_sd_file_manager to download or edit the avi's and config.txt.
 
