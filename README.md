@@ -9,6 +9,46 @@ ESP32-CAM-Video-Recorder-junior
   
   Although if you put your ssid and password, and timezone into the config.txt file, and put that file on the SD card, things will be nicer!  You can read the comments in config.txt and set your desired recording length, framesize, and internet on/off in there.
 
+## Update Jan  2, 2021 - updates for Arduino 1.8.19 and esp32-arduino 2.0.2
+
+You need all the files from the v58 folder:   
+https://github.com/jameszah/ESP32-CAM-Video-Recorder-junior/tree/master/v58  
+
+esp32-arduino busted a few things (mutexes, some sd_mmc chnages)
+
+The main screen is the same, except for the link to the esp32_sd_file_manager to download or edit the avi's and config.txt.
+
+<img src="./v58/first.jpg">
+
+Then there is the streaming screen (not shown) and the photos screen below - you can 10 photos at 3 second intervals.
+
+<img src="./v58/second.jpg">
+
+This is the esp32_sd_file_manager_screen:  
+1.  SD space and used space
+2.  GOTO ROOT DIR - takes you to the root
+3.  Folders are white - click on it to enter that folder
+4.  Files are blue/orange - click on the file to download it to your browser / computer
+5.  "D" "R" and "E" to delete, rename, or edit the files - only edit text files
+6.  Download all files to get the entire folder shown (not the sub folders)
+7.  You can also upload files in the "File Drop Zone"
+Read more about it here https://github.com/jameszah/ESPxWebFlMgr/tree/master/esp32_sd_file_manager
+
+<img src="./v58/third.jpg">
+
+Here is the download file dialog on Windows.
+
+<img src="./v58/fourth.jpg">
+
+You can also end recording and reboot from the webpage.
+
+<img src="./v58/last.jpg">
+
+Under good conditions, you can download at about 2 Mbps while recording, 3 Mbps when not recording,
+from an esp32 max of about 3.5 Mbps.
+
+<img src="./v58/2mbps.jpg">
+
 ## Update Dec 28, 2021 - new version with http browser file tranfer to download movies 
 
 You need all the files from the v57 folder:   
