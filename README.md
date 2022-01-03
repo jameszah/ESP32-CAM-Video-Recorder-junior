@@ -35,6 +35,10 @@ This is the esp32_sd_file_manager_screen:
 7.  You can also upload files in the "File Drop Zone"
 Read more about it here https://github.com/jameszah/ESPxWebFlMgr/tree/master/esp32_sd_file_manager
 
+This system will download to Windows and Android, and presumably others.  
+
+There is a problem with Android downloading to the browser in a Sansumg phone - it saves the .avi file with a ".phps" file type.  You can delete that and it will be recongnized as an .avi and will play properly, but I don't know where the "phps" comes from. ???
+
 <img src="./v58/third.jpg">
 
 Here is the download file dialog on Windows.
