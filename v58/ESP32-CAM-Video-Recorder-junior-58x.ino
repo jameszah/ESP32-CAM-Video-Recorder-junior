@@ -701,7 +701,7 @@ void delete_old_stuff() {
 void deleteFolderOrFile(const char * val) {
   // Function provided by user @gemi254
   Serial.printf("Deleting : %s\n", val);
-  File f = SD_MMC.open(val);
+  File f = SD_MMC.open("/" + String(val));
   if (!f) {
     Serial.printf("Failed to open %s\n", val);
     return;
@@ -728,7 +728,7 @@ void deleteFolderOrFile(const char * val) {
     }
     f.close();
     //Remove the dir
-    if (SD_MMC.rmdir(val)) {
+    if (SD_MMC.rmdir("/" + String(val))) {
       Serial.printf("Dir %s removed\n", val);
     } else {
       Serial.println("Remove dir failed");
@@ -736,7 +736,7 @@ void deleteFolderOrFile(const char * val) {
 
   } else {
     //Remove the file
-    if (SD_MMC.remove(val)) {
+    if (SD_MMC.remove("/" + String(val))) {
       Serial.printf("File %s deleted\n", val);
     } else {
       Serial.println("Delete failed");
@@ -2132,7 +2132,7 @@ void loop() {
   delay(20);
   read13 = read13 + digitalRead(13);  // get 2 opinions to help poor soldering
 
-  if (IncludeInternet == 4) {  // 4 is oppoiste of 3, so, flip read13
+  if (IncludeInternet == 4 || IncludeInternet == 2) {  // 4 is oppoiste of 3, so, flip read13
     if (read13 > 0) {
       read13 = 0;
     } else {
