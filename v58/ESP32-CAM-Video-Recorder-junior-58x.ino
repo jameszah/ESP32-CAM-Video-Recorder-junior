@@ -1335,11 +1335,11 @@ bool init_wifi()
     wm.setHostname(devname);
     //wm.resetSettings();  // for debugging - erase the ssid every time
 
-    wm.setConnectTimeout(20); // how long to try to connect for before continuing
-    wm.setConfigPortalTimeout(30); // auto close configportal after n seconds
+    wm.setConnectTimeout(30); // how long to try to connect for before continuing
+    wm.setConfigPortalTimeout(60); // auto close configportal after n seconds
     // res = wm.autoConnect(); // auto generated AP name from chipid
 
-    res = wm.autoConnect("esp32cam-config"); // use the devname defined above, with no password
+    res = wm.autoConnect("ESP32-CAM"); // use the devname defined above, with no password
     //res = wm.autoConnect("AutoConnectAP","password"); // password protected ap
 
     if (res) {
@@ -2000,7 +2000,7 @@ void the_camera_loop (void* pvParameter) {
 
       we_are_already_stopped = 0;
 
-      delete_old_stuff();
+      //delete_old_stuff(); // move to loop 
 
       avi_start_time = millis();
       Serial.printf("\nStart the avi ... at %d\n", avi_start_time);
@@ -2116,10 +2116,15 @@ void the_camera_loop (void* pvParameter) {
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // loop() - loop runs at low prio, so I had to move it to the task the_camera_loop at higher priority
+long next_delete = 1000;
 
 void loop() {
   long run_time = millis() - boot_time;
 
+  if ( millis() > next_delete){
+    next_delete = millis() + (15 * 60 * 1000); 
+    delete_old_stuff(); 
+  }
   start_record_2nd_opinion = start_record_1st_opinion;
   start_record_1st_opinion = digitalRead(12);
 
