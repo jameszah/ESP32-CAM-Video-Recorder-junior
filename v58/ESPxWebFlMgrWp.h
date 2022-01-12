@@ -1,4 +1,5 @@
 // mods by James Zahary Dec 28, 2021 https://github.com/jameszah/ESPxWebFlMgr
+//                      Jan 12, 2022 - adds dates/times to display
 // based on https://github.com/holgerlembke/ESPxWebFlMgr
 
 // inline guard. Did I mention that c/c++ is broken by design?
@@ -526,9 +527,13 @@ div {
   text-align: right;
 }
 
+.ccz {
+  text-align: right;
+}
+
 .gc {
   display: grid;
-  grid-template-columns: repeat(3, max-content);  
+  grid-template-columns: repeat(4, max-content);  
 }  
   )==g==";
 

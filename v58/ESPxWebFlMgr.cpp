@@ -1,4 +1,5 @@
 // mods by James Zahary Dec 28, 2021 https://github.com/jameszah/ESPxWebFlMgr
+//                      Jan 12, 2022 - adds dates/times to display
 // based on https://github.com/holgerlembke/ESPxWebFlMgr
 
 #include <Arduino.h>
@@ -8,6 +9,8 @@
 #include "ESPxWebFlMgrWpF.h"
 
 #include "crc32.h"
+
+#include <time.h> //jz
 
 #ifdef ESP8266
 #include <ESP8266WebServer.h>
@@ -302,38 +305,38 @@ void ESPxWebFlMgr::fileManagerFileListInsert(void) {  // must get arg with /i to
   //Serial.println(fileManager->arg(0));
 
   if ( (fileManager->args() == 1) && (fileManager->argName(0) == "subdir") ) {
-    subdir =  fileManager->arg(0); 
+    subdir =  fileManager->arg(0);
     //Serial.print("Arg: "); Serial.println(fileManager->arg(0));
 
     /*
-    if (fileManager->arg(0) == "/"){
-      subdir = "/"; 
-    } else if (subdir == "/") {
-      subdir =  fileManager->arg(0); 
-    } else {
-      subdir =  fileManager->arg(0); 
-    }
-    Serial.print("New subdir: "); Serial.println(subdir);
+      if (fileManager->arg(0) == "/"){
+      subdir = "/";
+      } else if (subdir == "/") {
+      subdir =  fileManager->arg(0);
+      } else {
+      subdir =  fileManager->arg(0);
+      }
+      Serial.print("New subdir: "); Serial.println(subdir);
     */
   } else {
     subdir = "/";
   }
   //Serial.print("Final subdir: "); Serial.println(subdir);
-  
+
   // first file is "go to root"
-  
+
   String fcd;
   String direct = "ccd";   //jz bland color for directory
   String fn = "/";
   fcd = "<div "
-       "class=\"ccl " + direct + "\""
-       "onclick=\"opendirectory('" + fn + "')\""
-       ">&nbsp;&nbsp;" + fn + " - GOTO ROOT DIR -" + "</div>";
-  
+        "class=\"ccl " + direct + "\""
+        "onclick=\"opendirectory('" + fn + "')\""
+        ">&nbsp;&nbsp;" + fn + " - GOTO ROOT DIR -" + "</div>";
+  fcd += "<div class=\"ccz " + direct + "\">&nbsp;" + " "  + "&nbsp;</div>";
   fcd += "<div class=\"cct " + direct + "\">&nbsp;" + dispIntDotted(0) + "&nbsp;</div>";
   fcd += "<div class=\"ccr " + direct + "\">&nbsp;";
   fcd += "&nbsp;&nbsp;</div>";
-  
+
   fileManager->sendContent(fcd);
 
 
@@ -344,10 +347,10 @@ void ESPxWebFlMgr::fileManagerFileListInsert(void) {  // must get arg with /i to
   while (file) {
     String fn = file.name();
     /*
-    Serial.print("FN: >");
-    Serial.print(fn);
-    Serial.print("<");
-    Serial.println();
+      Serial.print("FN: >");
+      Serial.print(fn);
+      Serial.print("<");
+      Serial.println();
     */
     if ( (_ViewSysFiles) || (allowAccessToThisFile(fn)) ) {
       /*
@@ -360,7 +363,7 @@ void ESPxWebFlMgr::fileManagerFileListInsert(void) {  // must get arg with /i to
 
       String fc;
       String nsd;
-      if (subdir == "/"){
+      if (subdir == "/") {
         nsd = "/";
       } else {
         nsd = subdir + "/";
@@ -380,6 +383,15 @@ void ESPxWebFlMgr::fileManagerFileListInsert(void) {  // must get arg with /i to
              "onclick=\"downloadfile('" + nsd + fn + "')\""
              ">&nbsp;&nbsp;" + fn + "</div>";
       }
+
+      time_t t= file.getLastWrite();
+      struct tm * tmstruct = localtime(&t);
+      //Serial.printf("  LAST WRITE: %d-%02d-%02d %02d:%02d:%02d\n",(tmstruct->tm_year)+1900,( tmstruct->tm_mon)+1, tmstruct->tm_mday,tmstruct->tm_hour , tmstruct->tm_min, tmstruct->tm_sec);
+      char ccz[100];
+      sprintf(ccz, " %d-%02d-%02d %02d:%02d:%02d\n",(tmstruct->tm_year)+1900,( tmstruct->tm_mon)+1, tmstruct->tm_mday,tmstruct->tm_hour , tmstruct->tm_min, tmstruct->tm_sec);
+      
+
+      fc += "<div class=\"ccz " + colorline(i) + "\">&nbsp;" + String(ccz) + "&nbsp;</div>"; //jz
 
       // File f = dir.openFile("r");
       fc += "<div class=\"cct " + colorline(i) + "\">&nbsp;" + dispIntDotted(file.size()) + "&nbsp;</div>";
@@ -459,7 +471,7 @@ void ESPxWebFlMgr::fileManagerFileEditorInsert(void) {
     fileManager->sendContent(ESPxWebFlMgrWpFormIntro);
 
     if (ESPxWebFlMgr_FileSystem.exists(subdir + "/" + fn)) {
-      File f = ESPxWebFlMgr_FileSystem.open(subdir + "/" + fn, "r");  
+      File f = ESPxWebFlMgr_FileSystem.open(subdir + "/" + fn, "r");
       if (f) {
         do {
           String l = f.readStringUntil('\n') + '\n';
@@ -817,7 +829,7 @@ void ESPxWebFlMgr::fileManagerCommandExecutor(void) {
     Serial.print(fileManager->arg(i));
     Serial.println();
     }
-   */ 
+  */
 
   // no Args: DIE!
   if (fileManager->args() == 0) {
@@ -878,7 +890,17 @@ void ESPxWebFlMgr::fileManagerCommandExecutor(void) {
   if ( (fileManager->args() == 1) && (fileManager->argName(0) == "del") ) {
     String fn = fileManager->arg(0);
     if ( (_ViewSysFiles) || (allowAccessToThisFile(fn)) ) {
-      ESPxWebFlMgr_FileSystem.remove( subdir + "/" + fn);  // Add slash
+      int x = ESPxWebFlMgr_FileSystem.remove( subdir + "/" + fn);  // Add slash
+      //delay(1000);
+      if (!x) {
+        Serial.print("remove failed, try rmdir ");
+        Serial.print( subdir + "/" + fn );
+        int y = ESPxWebFlMgr_FileSystem.rmdir(  "/" + fn);  // Add slash
+        //delay(1000);
+        if (!y) {
+          Serial.print("rmdir failed, directory must be empty! ");
+        }
+      }
     }
   }
 
@@ -889,8 +911,9 @@ void ESPxWebFlMgr::fileManagerCommandExecutor(void) {
     if ( (_ViewSysFiles) || (allowAccessToThisFile(fn)) ) {
       String fn2 = CheckFileNameLengthLimit(fileManager->arg(1));
       if ( (_ViewSysFiles) || (allowAccessToThisFile(fn2)) ) {
-        //Serial.println(fn);
-        //Serial.println(fn2);
+        Serial.println(subdir);
+        Serial.println(fn);
+        Serial.println(fn2);
         ESPxWebFlMgr_FileSystem.rename( subdir + "/" + fn,  subdir + "/" + fn2);
       }
     }
