@@ -43,9 +43,11 @@ Read more about it here https://github.com/jameszah/ESPxWebFlMgr/tree/master/esp
 
 This system will download to Windows and Android, and presumably others.  
 
-There is a problem with Android downloading to the browser in a Sansumg phone - it saves the .avi file with a ".phps" file type.  You can delete that and it will be recongnized as an .avi and will play properly, but I don't know where the "phps" comes from. ???
+There is a problem with Android downloading to the browser in a Sansumg phone - it saves the .avi file with a ".phps" file type.  You can delete that and it will be recongnized as an .avi and will play properly, but I don't know where the "phps" comes from. ???  
 
-<img src="./v58/third.jpg">
+(Jan 12, 2022 - add date and time to files)  
+
+<img src="./v58/newfm.jpg">
 
 Here is the download file dialog on Windows.
 
