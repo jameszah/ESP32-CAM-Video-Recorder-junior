@@ -8,7 +8,7 @@
 #include "ESPxWebFlMgrWp.h"
 #include "ESPxWebFlMgrWpF.h"
 
-#include "crc32.h"
+#include "CRC32.h"
 
 #include <time.h> //jz
 
