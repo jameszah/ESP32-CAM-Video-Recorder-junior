@@ -9,10 +9,11 @@ ESP32-CAM-Video-Recorder-junior
   
   Although if you put your ssid and password, and timezone into the config.txt file, and put that file on the SD card, things will be nicer!  You can read the comments in config.txt and set your desired recording length, framesize, and internet on/off in there.
 
+
+
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=jameszah/ESP32-CAM-Video-Recorder,jameszah/ESP32-CAM-Video-Recorder-junior,jameszah/ESP32-CAM-Video-Telegram&type=Date)](https://star-history.com/#jameszah/ESP32-CAM-Video-Recorder&jameszah/ESP32-CAM-Video-Recorder-junior&jameszah/ESP32-CAM-Video-Telegram&Date)
-
+[![Star History Chart](https://api.star-history.com/svg?repos=jameszah/ESP32-CAM-Video-Recorder,jameszah/ESP32-CAM-Video-Recorder-junior,jameszah/ESP32-CAM-Video-Telegram,jameszah/ESP32-CAM-JAMCAM,jameszah/CameraWebServerRecorder&type=Date)](https://star-history.com/#jameszah/ESP32-CAM-Video-Recorder&jameszah/ESP32-CAM-Video-Recorder-junior&jameszah/ESP32-CAM-Video-Telegram&jameszah/ESP32-CAM-JAMCAM&jameszah/CameraWebServerRecorder&Date)
 
 ## Update Jan  7, 2021 - One-Click Installer
 
