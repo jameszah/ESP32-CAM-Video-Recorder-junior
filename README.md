@@ -15,6 +15,8 @@ ESP32-CAM-Video-Recorder-junior
 
 [![Star History Chart](https://api.star-history.com/svg?repos=jameszah/ESP32-CAM-Video-Recorder,jameszah/ESP32-CAM-Video-Recorder-junior,jameszah/ESP32-CAM-Video-Telegram,jameszah/ESP32-CAM-JAMCAM,jameszah/CameraWebServerRecorder&type=Date)](https://star-history.com/#jameszah/ESP32-CAM-Video-Recorder&jameszah/ESP32-CAM-Video-Recorder-junior&jameszah/ESP32-CAM-Video-Telegram&jameszah/ESP32-CAM-JAMCAM&jameszah/CameraWebServerRecorder&Date)
 
+Check out https://github.com/jameszah/ESP32-CAM-JAMCAM with builtin video clipping, reduce framerate, and rebuild index, plus video display, ... and snakes!
+
 ## Update Jan  7, 2021 - One-Click Installer
 
 Click here for a one-click installer of the current version of the program.  It is pre-compiled, and it will run with no-internet, and the standard HD recording, or you can edit the config.txt and put it on a sd card, and then wifi will start and you can watch streaming video, and download your videos to your browser and computer/phone.
