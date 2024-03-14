@@ -13,7 +13,11 @@ ESP32-CAM-Video-Recorder-junior
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=jameszah/ESP32-CAM-Video-Recorder,jameszah/ESP32-CAM-Video-Recorder-junior,jameszah/ESP32-CAM-Video-Telegram,jameszah/ESP32-CAM-JAMCAM,jameszah/CameraWebServerRecorder&type=Date)](https://star-history.com/#jameszah/ESP32-CAM-Video-Recorder&jameszah/ESP32-CAM-Video-Recorder-junior&jameszah/ESP32-CAM-Video-Telegram&jameszah/ESP32-CAM-JAMCAM&jameszah/CameraWebServerRecorder&Date)
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=jameszah/ESP32-CAM-Video-Recorder,jameszah/ESP32-CAM-Video-Recorder-junior,jameszah/ESP32-CAM-Video-Telegram,jameszah/ESP32-CAM-JAMCAM&type=Date)](https://star-history.com/#jameszah/ESP32-CAM-Video-Recorder&jameszah/ESP32-CAM-Video-Recorder-junior&jameszah/ESP32-CAM-Video-Telegram&jameszah/ESP32-CAM-JAMCAM&Date)
+
+
 
 Check out https://github.com/jameszah/ESP32-CAM-JAMCAM with builtin video clipping, reduce framerate, and rebuild index, plus video display, ... and snakes!
 
