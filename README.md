@@ -28,6 +28,7 @@ Some updates
 - lots of efficiency improvments
 - will add a one-click installer
 - run on clean sd card and it will create a default config2.txt file and start an access point at "desklens", password "12344321", then 192.168.4.1, and click "edit config2.txt" to put you own ssis, timezone, recording parameters
+- set board type as AI-Thinker ESP32-CAM with Minimum Spiffs 1.9MB with ota, etc
 
 
 ## Star History
