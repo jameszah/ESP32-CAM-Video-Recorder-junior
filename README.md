@@ -17,12 +17,17 @@ Some updates
 - keeps AP access point running, so you can use it without a router and access from phone
 - files access downloads and sorted and organized better
 - allows you to look inside the videos, and click to various points to check this is the video you want to download
-- has ota enabled by endpoint 192.168.1.4/ota etc with password "mrpeanut"
+- allows you to re-index a video on the sd card, so you can look at it, and download the indexed version (in event of dead battery or other problem, that did not close file properly)
+- has ota enabled by endpoint 192.168.1.100/ota etc with password "mrpeanut"
 - has endpoint 192.168.1.100/capture to set up a motioneye Network Camera independent of local recording
 - gets rid of requirement to have 4MB esp32-cam's as some generic versions just have 2MB
+- endpoints 192.168.1.100:81/stream and 192.168.1.100:82/stream for 2 streaming channels
+- endpoints 192.168.1.100/stop and 192.168.1.100/start to stop start recording from web (starts recording on reboot)
+- ground/unground gpio 12 to stop/start recording with a switch or pir, etc
+- gpio 12 "stop" supercedes web-stop above
 - lots of efficiency improvments
 - will add a one-click installer
-- run on clean sd card and it will create a default config2.txt and start an access point as "desklens", password "12344321", then 192.168.4.1. and click "edit config2.txt" to put you own ssis, timezone, recording parameters
+- run on clean sd card and it will create a default config2.txt file and start an access point at "desklens", password "12344321", then 192.168.4.1, and click "edit config2.txt" to put you own ssis, timezone, recording parameters
 
 
 ## Star History
