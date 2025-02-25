@@ -9,6 +9,20 @@ ESP32-CAM-Video-Recorder-junior
   
   Although if you put your ssid and password, and timezone into the config.txt file, and put that file on the SD card, things will be nicer!  You can read the comments in config.txt and set your desired recording length, framesize, and internet on/off in there.
 
+## Update Feb 25, 2025
+
+New version in v62 folder
+Some updates
+- allows 2 router ssid, and it will chooses the best
+- keeps AP access point running, so you can use it without a router and access from phone
+- files access downloads and sorted and organized better
+- allows you to look inside the videos, and click to various points to check this is the video you want to download
+- has ota enabled by endpoint 192.168.1.4/ota etc with password "mrpeanut"
+- has endpoint 192.168.1.100/capture to set up a motioneye Network Camera independent of local recording
+- gets rid of requirement to have 4MB esp32-cam's as some generic versions just have 2MB
+- lots of efficiency improvments
+- will add a one-click installer
+- run on clean sd card and it will create a default config2.txt and start an access point as "desklens", password "12344321", then 192.168.4.1. and click "edit config2.txt" to put you own ssis, timezone, recording parameters
 
 
 ## Star History
