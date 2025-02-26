@@ -4,8 +4,8 @@ Simple fast version of https://github.com/jameszah/ESP32-CAM-Video-Recorder
 ESP32-CAM-Video-Recorder-junior
 
   This program records an mjpeg avi video to the sd card of an ESP32-CAM.
-  
-  You can just compile, download, power-on ... and it will record a series of 30 minute, HD videos, 12.5 fps on your SD card ... while you read on ... 
+
+  You can install with the one-click installer https://jameszah.github.io/ESP32-CAM-VideoCam/ or compile, download, power-on ... and it will record a series of 30 minute, HD videos, 12.5 fps on your SD card ... while you read on ... 
   
   Although if you put your ssid and password, and timezone into the config.txt file, and put that file on the SD card, things will be nicer!  You can read the comments in config.txt and set your desired recording length, framesize, and internet on/off in there.
 
