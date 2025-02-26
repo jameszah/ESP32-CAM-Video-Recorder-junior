@@ -36,7 +36,7 @@ config2.txt parametes  - explained at the bottom of default config file - edit i
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=jameszah/ESP32-CAM-Video-Recorder,jameszah/ESP32-CAM-Video-Recorder-junior,jameszah/ESP32-CAM-Video-Telegram,jameszah/ESP32-CAM-JAMCAM&type=Date)](https://star-history.com/#jameszah/ESP32-CAM-Video-Recorder&jameszah/ESP32-CAM-Video-Recorder-junior&jameszah/ESP32-CAM-Video-Telegram&jameszah/ESP32-CAM-JAMCAM&Date)
+(https://star-history.com/#jameszah/ESP32-CAM-Video-Recorder&jameszah/ESP32-CAM-Video-Recorder-junior&jameszah/ESP32-CAM-Video-Telegram&jameszah/ESP32-CAM-JAMCAM&Date)
 
 
 
