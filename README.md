@@ -30,6 +30,9 @@ Some updates
 - run on clean sd card and it will create a default config2.txt file and start an access point at "desklens", password "12344321", then 192.168.4.1, and click "edit config2.txt" to put you own ssid, timezone, recording parameters
 - set board type as AI-Thinker ESP32-CAM with Minimum Spiffs 1.9MB with ota, etc
 
+config2.txt parametes  - explained at the bottom of default config file - edit in new data, leave 2 spaces to // and comments
+
+![image](https://github.com/user-attachments/assets/29a52343-9f1a-4216-971e-8aa925505350)
 
 ## Star History
 
