@@ -13,7 +13,7 @@ ESP32-CAM-Video-Recorder-junior
 
 New version in v62 folder
 Some updates
-- allows 2 router ssid, and it will choose the best
+- allows setup for 2 routers, and it will choose the best (set it up at desk, and walk it to installation point without reconfiguring)
 - keeps AP access point running, so you can use it without a router and access from phone
 - files access downloads and sorted and organized better
 - allows you to look inside the videos, and click to various points to check this is the video you want to download
