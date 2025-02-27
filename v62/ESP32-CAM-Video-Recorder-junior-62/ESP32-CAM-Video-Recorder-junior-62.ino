@@ -95,7 +95,7 @@
 // user edits here:
 
 
-static const char vernum[] = "v62.1";
+static const char vernum[] = "v62.2";
 char devname[30];
 
 // https://sites.google.com/a/usapiens.com/opnode/time-zones  -- find your timezone here
@@ -3785,6 +3785,9 @@ void setup() {
     InternetOff = false;
   }
 
+  Serial.println("Checking SD for available space ...");
+  delete_old_stuff();
+
   char logname[60];
   char the_directory[30];
 
@@ -3798,11 +3801,7 @@ void setup() {
   if (!logfile) {
     Serial.println("Failed to open logfile for writing");
   }
-
-  Serial.println("Checking SD for available space ...");
-  delete_old_stuff();
-
-
+  
   boot_time = millis();
 
   const char *strdate = ctime(&now);

@@ -137,12 +137,13 @@ fetch(query)
   Current: <input type="number" id="fcur" min=0 max=99999 onchnage="fcurchange()" style="color:blue;" value="0"> 
   --- 
   End: <input type="number" id="fend" min=0 max=99999 style="color:blue;" value="0"> </p>
-  <p>If it says 2 frames - you need to reindex to see the rest</p>
+  <p>Click on the bar to look at frames through the video </p>
+  <p>Live videos show up to the current frame - reload for newer frames </p>
   <p>File: <input type="text" id="file_to_edit" readonly size=25 style="color:red;" value="???"> 
   
-  <button id="saveedited">Save Edited File</button>
+
   New File Name: <input type="text" id="file_to_write" size=25 style="color:blue;" value="???"></p>
-  If no image, re-index the file, and edit that one:  <button id="reindex">ReIndex the File</button>
+  If it says 2 frames, then re-index the file:  <button id="reindex">ReIndex the File</button>
 
       </div>
       <div id="four">

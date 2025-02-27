@@ -22,33 +22,15 @@ static const char ESPxWebFlMgrWpindexpage[] PROGMEM = R"==x==(
   </head>
   <body class="background">
     <div id="gc">
-        <div class="o1">&nbsp;</div>
+       
         <div class="o2">&nbsp;</div>
         <div class="o3" id="o3">&nbsp;</div>
-        <div class="o4">&nbsp;</div>
+       
 
-        <div class="m1">
-            <div class="s11">&nbsp;</div>
-            <div class="s12">
-            <div class="s13 background">&nbsp;</div>
-            </div>
-        </div>
-        <div class="m2" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
-          File<br />
-          Drop<br />
-          Zone<br />
-        </div>
-        <div class="m3">
-            <div class="s31">&nbsp;</div>
-            <div class="s32">
-            <div class="s33 background">&nbsp;</div>
-            </div>
-        </div>
-
-        <div class="u1">&nbsp;</div>
-        <div class="u2" onclick="downloadall();">Download all files</div>
+     
+        <div class="u2">&nbsp;</div>
         <div class="u3" id="msg">Loading...</div>
-        <div class="u4">&nbsp;</div>
+       
         <div class="c" id="fi">
           File list should appear here.
         </div>
@@ -407,7 +389,7 @@ div {
 
 #gc {
   display: grid;
-  grid-template-columns: 80px 25% auto 30px;
+  grid-template-columns: 1px 25% auto 30px;
   grid-template-rows: 20px 30px auto 30px 20px;
   grid-template-areas: "o1 o2 o3 o4" "m1 c c c" "m2 c c c" "m3 c c c" "u1 u2 u3 u4";
 }
@@ -415,7 +397,7 @@ div {
 .o1 {
   grid-area: o1;
   background-color: #9999CC;
-  border-top-left-radius: 20px;
+  border-top-left-radius: 2px;
   margin-bottom: 0px;
 }
 
@@ -493,7 +475,7 @@ div {
 .u1 {
   grid-area: u1;
   background-color: #9999CC;
-  border-bottom-left-radius: 20px;
+  border-bottom-left-radius: 2px;
   margin-top: 0px;
 }
 
@@ -547,7 +529,7 @@ div {
 
 .cc {
   width: min-content;
-  margin: 10px 0px;
+  margin: 3px 0px;
 }
 
 .gc div {
