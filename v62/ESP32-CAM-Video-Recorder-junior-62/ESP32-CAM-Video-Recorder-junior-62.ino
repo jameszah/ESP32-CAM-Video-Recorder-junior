@@ -95,7 +95,7 @@
 // user edits here:
 
 
-static const char vernum[] = "v62.2";
+static const char vernum[] = "v62.21";
 char devname[30];
 
 // https://sites.google.com/a/usapiens.com/opnode/time-zones  -- find your timezone here

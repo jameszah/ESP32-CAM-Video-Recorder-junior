@@ -347,7 +347,7 @@ void ESPxWebFlMgr::fileManagerFileListInsert(void) {  // must get arg with /i to
     String fn = xf.name();
     //  if (SD_MMC.rmdir("/" + String(val))) {
     if (xf.isDirectory()) {
-      if (ESPxWebFlMgr_FileSystem.rmdir(nsd + fn)) {
+      if (ESPxWebFlMgr_FileSystem.rmdir(nsd + fn)) {                      // remove empty dir
         Serial.printf("Dir removed\n"); Serial.println(nsd + fn);
       } else {
         //Serial.print("Remove dir failed"); Serial.println(nsd + fn);
@@ -375,6 +375,7 @@ void ESPxWebFlMgr::fileManagerFileListInsert(void) {  // must get arg with /i to
   Serial.printf("Internal Total heap %d, internal Free Heap %d, ", ESP.getHeapSize(), ESP.getFreeHeap());
   Serial.printf("SPIRam Total heap   %d, SPIRam Free Heap   %d\n", ESP.getPsramSize(), ESP.getFreePsram());
 
+/*
   while (dirList.size() > 200) {
     auto iter2 = dirList.back();
     String fn = get<1>(iter2);
@@ -389,20 +390,20 @@ void ESPxWebFlMgr::fileManagerFileListInsert(void) {  // must get arg with /i to
   Serial.printf("Internal Total heap %d, internal Free Heap %d, ", ESP.getHeapSize(), ESP.getFreeHeap());
   Serial.printf("SPIRam Total heap   %d, SPIRam Free Heap   %d\n", ESP.getPsramSize(), ESP.getFreePsram());
 
-
+*/
 
   String fcd;
   String direct = "ccd";   //jz bland color for directory
 
-/*
-  fcd = "<div class=\"ccl ccd\">&nbsp;&nbsp; - SORTED 200 max -</div>";
-  fcd += "<div class=\"ccz ccd\">&nbsp; &nbsp;</div>";
-  fcd += "<div class=\"cct ccd\">&nbsp; &nbsp;</div>";
-  fcd += "<div class=\"ccr ccd\">&nbsp;";
-  fcd += "&nbsp;&nbsp;</div>";
+  /*
+    fcd = "<div class=\"ccl ccd\">&nbsp;&nbsp; - SORTED 200 max -</div>";
+    fcd += "<div class=\"ccz ccd\">&nbsp; &nbsp;</div>";
+    fcd += "<div class=\"cct ccd\">&nbsp; &nbsp;</div>";
+    fcd += "<div class=\"ccr ccd\">&nbsp;";
+    fcd += "&nbsp;&nbsp;</div>";
 
-  fileManager->sendContent(fcd);
-*/
+    fileManager->sendContent(fcd);
+  */
 
   // first file is "go to root"
   String fn = "/";
@@ -431,78 +432,57 @@ void ESPxWebFlMgr::fileManagerFileListInsert(void) {  // must get arg with /i to
 
     String fc;
 
-    if (get<4>(*iter2) == 1) {
-
-      String direct = "ccd";   //jz bland color for directory
-
-      //fcd = "<div class=\"ccl ccd\">&nbsp;&nbsp; - SORTED 200 max -</div>";
-      //fcd += "<div class=\"ccz ccd\">&nbsp; &nbsp;</div>";
-      //fcd += "<div class=\"cct ccd\">&nbsp; &nbsp;</div>";
-      //fcd += "<div class=\"ccr ccd\">&nbsp;";
-      //fcd += "&nbsp;&nbsp;</div>";
-
-
-      //fcd = "<div "
-      //      "class=\"ccl " + direct + "\""
-      //      "onclick=\"opendirectory('" + nsd + fn + "')\""
-      //      ">&nbsp;&nbsp;" + fn + " - DIR -" + "</div>";
-      //fcd += "<div class=\"ccz " + direct + "\">&nbsp;" + " "  + "&nbsp;</div>";
-      //fcd += "<div class=\"cct " + direct + "\">&nbsp;" + dispIntDotted(0) + "&nbsp;</div>";
-      //fcd += "<div class=\"ccr " + direct + "\">&nbsp;";
-      //fcd += "&nbsp;&nbsp;</div>";
+    if (get<4>(*iter2) == 1) {  // directory
 
       time_t t = get<3>(*iter2) ;
       struct tm * tmstruct = localtime(&t);
       char ccz[30];
       sprintf(ccz, " %d-%02d-%02d %02d:%02d:%02d\n", (tmstruct->tm_year) + 1900, ( tmstruct->tm_mon) + 1, tmstruct->tm_mday, tmstruct->tm_hour , tmstruct->tm_min, tmstruct->tm_sec);
 
-      fc = "<div "
-           "class=\"ccl ccd  \""
-           "onclick=\"opendirectory('" + nsd + fn + "')\""
-           ">&nbsp;&nbsp;" + fn + " - DIR -" + "</div>";
-      fc += "<div class=\"ccz ccd\">&nbsp;" + String(ccz) + "&nbsp;</div>";
-      fc += "<div class=\"cct ccd\">&nbsp;&nbsp;</div>";
-      fc += "<div class=\"ccr ccd\">&nbsp;<button title=\"Delete\" onclick=\"deletefile('" + fn + "')\" class=\"b\">Del</button> " ;
-      fc += "&nbsp;&nbsp;</div>";
+      char char_fc[400];
+      sprintf(char_fc, "<div class=\"ccl ccd  \"onclick=\"opendirectory('%s%s')\">&nbsp;&nbsp;%s - DIR -</div><div class=\"ccz ccd\">&nbsp;%s&nbsp;</div><div class=\"cct ccd\">&nbsp;&nbsp;</div><div class=\"ccr ccd\">&nbsp;<button title=\"Delete\" onclick=\"deletefile('%s')\" class=\"b\">Del</button> &nbsp;&nbsp;</div>",
+              nsd.c_str(), fn.c_str(), fn.c_str(), ccz, fn.c_str());
+      fileManager->sendContent(char_fc, strlen(char_fc));
 
-      fileManager->sendContent(fc);
       dirList.pop_front();
-    } else {
 
-      fc = "<div class=\"ccl ccu\"onclick=\"downloadfile('" + nsd + fn + "')\">&nbsp;&nbsp;" + fn + "</div>";
+    } else { // dile
 
       time_t t = get<3>(*iter2) ;
       struct tm * tmstruct = localtime(&t);
       char ccz[30];
       sprintf(ccz, " %d-%02d-%02d %02d:%02d:%02d\n", (tmstruct->tm_year) + 1900, ( tmstruct->tm_mon) + 1, tmstruct->tm_mday, tmstruct->tm_hour , tmstruct->tm_min, tmstruct->tm_sec);
-
-      fc += "<div class=\"ccz ccu\">&nbsp;" + String(ccz) + "&nbsp;</div>"; //jz
-      fc += "<div class=\"cct ccu\">&nbsp;" + dispIntDotted(get<2>(*iter2)) + "&nbsp;</div>";
-      fc += "<div class=\"ccr ccu\">&nbsp;<button title=\"Delete\" onclick=\"deletefile('" + fn + "')\" class=\"b\">Del</button> " ;
-
-      dirList.pop_front();
-
-      //61.3
+        String get2 = dispIntDotted(get<2>(*iter2));
+        
       if ( (fn.endsWith(".avi") ) ) {
-        fc += "<button title=\"Edit\" onclick=\"editavi('" + nsd + fn + "')\" class=\"b\">View</button> ";
-      } else {
+        char char_fc[500];
+        sprintf(char_fc, "<div class=\"ccl ccu\"onclick=\"downloadfile('%s%s')\">&nbsp;&nbsp;%s</div><div class=\"ccz ccu\">&nbsp;%s&nbsp;</div><div class=\"cct ccu\">&nbsp;%s&nbsp;</div><div class=\"ccr ccu\">&nbsp;<button title=\"Delete\" onclick=\"deletefile('%s')\" class=\"b\">Del</button><button title=\"Edit\" onclick=\"editavi('%s%s')\" class=\"b\">View</button>&nbsp;&nbsp;</div> ",
+                nsd.c_str(), fn.c_str(), fn.c_str(), ccz, get2.c_str(), fn.c_str(), nsd.c_str(), fn.c_str());
+        fileManager->sendContent(char_fc, strlen(char_fc));
+
+      } else { // not an avi
         String contentTyp = getContentType(fn);
         if ( (contentTyp.startsWith("text/")) || (contentTyp.startsWith("application/j"))  ) {
 
-          fc += "<button title=\"Edit\" onclick=\"editfile('" +  fn + "')\" class=\"b\">Edit</button> ";
-
+          char char_fc[500];
+          sprintf(char_fc, "<div class=\"ccl ccu\"onclick=\"downloadfile('%s%s')\">&nbsp;&nbsp;%s</div><div class=\"ccz ccu\">&nbsp;%s&nbsp;</div><div class=\"cct ccu\">&nbsp;%s&nbsp;</div><div class=\"ccr ccu\">&nbsp;<button title=\"Delete\" onclick=\"deletefile('%s')\" class=\"b\">Del</button> <button title=\"Edit\" onclick=\"editfile('%s')\" class=\"b\">Edit</button> &nbsp;&nbsp;</div> ",
+                  nsd.c_str(), fn.c_str(), fn.c_str(), ccz, get2.c_str(), fn.c_str(), fn.c_str());
+          fileManager->sendContent(char_fc, strlen(char_fc));
+        } else {
+          char char_fc[500];
+          sprintf(char_fc, "<div class=\"ccl ccu\"onclick=\"downloadfile('%s%s')\">&nbsp;&nbsp;%s</div><div class=\"ccz ccu\">&nbsp;%s&nbsp;</div><div class=\"cct ccu\">&nbsp;%s&nbsp;</div><div class=\"ccr ccu\">&nbsp;<button title=\"Delete\" onclick=\"deletefile('%s')\" class=\"b\">Del</button>  &nbsp;&nbsp;</div> ",
+                  nsd.c_str(), fn.c_str(), fn.c_str(), ccz, get2.c_str(), fn.c_str());
+          fileManager->sendContent(char_fc, strlen(char_fc));
         }
       }
 
-      fc += "&nbsp;&nbsp;</div>";
+      dirList.pop_front();
 
       delay(5);
-
-      fileManager->sendContent(fc);
       i++;
-
-      delay(5);
     }
+
+    
     if (ESP.getFreeHeap() < 60000) {
       delay(50);
       Serial.printf("Heap is low %d\n", ESP.getFreeHeap());
@@ -522,9 +502,6 @@ void ESPxWebFlMgr::fileManagerFileListInsert(void) {  // must get arg with /i to
       Serial.printf("Internal Total heap %d, internal Free Heap %d, ", ESP.getHeapSize(), ESP.getFreeHeap());
       Serial.printf("SPIRam Total heap   %d, SPIRam Free Heap   %d\n", ESP.getPsramSize(), ESP.getFreePsram());
     }
-
-    //dirList.pop_front(); // move it earlier
-
   }
 
   /*
