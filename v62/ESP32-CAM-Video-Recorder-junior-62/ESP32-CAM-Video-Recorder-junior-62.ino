@@ -95,7 +95,7 @@
 // user edits here:
 
 
-static const char vernum[] = "v62.21";
+static const char vernum[] = "v62.22";
 char devname[30];
 
 // https://sites.google.com/a/usapiens.com/opnode/time-zones  -- find your timezone here
@@ -1346,7 +1346,7 @@ static void end_avi() {
 
   logfile.flush();
 
-  if (file_number == 998) {
+  if (file_number == 198) {
     reboot_now = true;
   }
 }

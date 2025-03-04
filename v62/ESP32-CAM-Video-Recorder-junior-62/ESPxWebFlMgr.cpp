@@ -352,10 +352,12 @@ void ESPxWebFlMgr::fileManagerFileListInsert(void) {  // must get arg with /i to
       } else {
         //Serial.print("Remove dir failed"); Serial.println(nsd + fn);
         dirList.emplace_back("", xf.name(), xf.size(), xf.getLastWrite(), 1);
+        Serial.printf("Added Sub: "); Serial.println(xf.name());
       }
 
     } else {
       dirList.emplace_back("", xf.name(), xf.size(), xf.getLastWrite(), 0);
+      Serial.printf("Added: "); Serial.println(xf.name());
     }
 
     xf = xdir.openNextFile();
@@ -375,13 +377,14 @@ void ESPxWebFlMgr::fileManagerFileListInsert(void) {  // must get arg with /i to
   Serial.printf("Internal Total heap %d, internal Free Heap %d, ", ESP.getHeapSize(), ESP.getFreeHeap());
   Serial.printf("SPIRam Total heap   %d, SPIRam Free Heap   %d\n", ESP.getPsramSize(), ESP.getFreePsram());
 
-/*
+
   while (dirList.size() > 200) {
     auto iter2 = dirList.back();
     String fn = get<1>(iter2);
     if  (!fn.endsWith("2.txt")) {
       Serial.printf("Deleting ... "); Serial.println(fn);
       ESPxWebFlMgr_FileSystem.remove( "/" + fn);
+      delay(50);
     }
     dirList.pop_back();
   }
@@ -389,8 +392,6 @@ void ESPxWebFlMgr::fileManagerFileListInsert(void) {  // must get arg with /i to
   Serial.printf("Done the shrink\n");
   Serial.printf("Internal Total heap %d, internal Free Heap %d, ", ESP.getHeapSize(), ESP.getFreeHeap());
   Serial.printf("SPIRam Total heap   %d, SPIRam Free Heap   %d\n", ESP.getPsramSize(), ESP.getFreePsram());
-
-*/
 
   String fcd;
   String direct = "ccd";   //jz bland color for directory
@@ -452,11 +453,11 @@ void ESPxWebFlMgr::fileManagerFileListInsert(void) {  // must get arg with /i to
       struct tm * tmstruct = localtime(&t);
       char ccz[30];
       sprintf(ccz, " %d-%02d-%02d %02d:%02d:%02d\n", (tmstruct->tm_year) + 1900, ( tmstruct->tm_mon) + 1, tmstruct->tm_mday, tmstruct->tm_hour , tmstruct->tm_min, tmstruct->tm_sec);
-        String get2 = dispIntDotted(get<2>(*iter2));
-        
+      String get2 = dispIntDotted(get<2>(*iter2));
+
       if ( (fn.endsWith(".avi") ) ) {
         char char_fc[500];
-        sprintf(char_fc, "<div class=\"ccl ccu\"onclick=\"downloadfile('%s%s')\">&nbsp;&nbsp;%s</div><div class=\"ccz ccu\">&nbsp;%s&nbsp;</div><div class=\"cct ccu\">&nbsp;%s&nbsp;</div><div class=\"ccr ccu\">&nbsp;<button title=\"Delete\" onclick=\"deletefile('%s')\" class=\"b\">Del</button><button title=\"Edit\" onclick=\"editavi('%s%s')\" class=\"b\">View</button>&nbsp;&nbsp;</div> ",
+        sprintf(char_fc, "<div class=\"ccl ccu\"onclick=\"downloadfile('%s%s')\">&nbsp;&nbsp;%s</div><div class=\"ccz ccu\">&nbsp;%s&nbsp;</div><div class=\"cct ccu\">&nbsp;%s&nbsp;</div><div class=\"ccr ccu\">&nbsp;<button title=\"Delete\" onclick=\"deletefile('%s')\" class=\"b\">Del</button> &nbsp; <button title=\"Edit\" onclick=\"editavi('%s%s')\" class=\"b\">View</button>&nbsp;&nbsp;</div> ",
                 nsd.c_str(), fn.c_str(), fn.c_str(), ccz, get2.c_str(), fn.c_str(), nsd.c_str(), fn.c_str());
         fileManager->sendContent(char_fc, strlen(char_fc));
 
@@ -465,7 +466,7 @@ void ESPxWebFlMgr::fileManagerFileListInsert(void) {  // must get arg with /i to
         if ( (contentTyp.startsWith("text/")) || (contentTyp.startsWith("application/j"))  ) {
 
           char char_fc[500];
-          sprintf(char_fc, "<div class=\"ccl ccu\"onclick=\"downloadfile('%s%s')\">&nbsp;&nbsp;%s</div><div class=\"ccz ccu\">&nbsp;%s&nbsp;</div><div class=\"cct ccu\">&nbsp;%s&nbsp;</div><div class=\"ccr ccu\">&nbsp;<button title=\"Delete\" onclick=\"deletefile('%s')\" class=\"b\">Del</button> <button title=\"Edit\" onclick=\"editfile('%s')\" class=\"b\">Edit</button> &nbsp;&nbsp;</div> ",
+          sprintf(char_fc, "<div class=\"ccl ccu\"onclick=\"downloadfile('%s%s')\">&nbsp;&nbsp;%s</div><div class=\"ccz ccu\">&nbsp;%s&nbsp;</div><div class=\"cct ccu\">&nbsp;%s&nbsp;</div><div class=\"ccr ccu\">&nbsp;<button title=\"Delete\" onclick=\"deletefile('%s')\" class=\"b\">Del</button> &nbsp; <button title=\"Edit\" onclick=\"editfile('%s')\" class=\"b\">Edit</button> &nbsp;&nbsp;</div> ",
                   nsd.c_str(), fn.c_str(), fn.c_str(), ccz, get2.c_str(), fn.c_str(), fn.c_str());
           fileManager->sendContent(char_fc, strlen(char_fc));
         } else {
@@ -482,7 +483,7 @@ void ESPxWebFlMgr::fileManagerFileListInsert(void) {  // must get arg with /i to
       i++;
     }
 
-    
+
     if (ESP.getFreeHeap() < 60000) {
       delay(50);
       Serial.printf("Heap is low %d\n", ESP.getFreeHeap());
@@ -501,6 +502,24 @@ void ESPxWebFlMgr::fileManagerFileListInsert(void) {  // must get arg with /i to
       Serial.printf("file %3d ---", i);
       Serial.printf("Internal Total heap %d, internal Free Heap %d, ", ESP.getHeapSize(), ESP.getFreeHeap());
       Serial.printf("SPIRam Total heap   %d, SPIRam Free Heap   %d\n", ESP.getPsramSize(), ESP.getFreePsram());
+    }
+
+    if (i % 100 == 50 ) {
+      delay(50);
+      fileManager->sendContent(F("</div></div>"));
+      fileManager->sendContent(F("<div class=\"cc\"><div class=\"gc\">"));
+      // first file is "go to root"
+      String fn = "/";
+      fcd = "<div "
+            "class=\"ccl " + direct + "\""
+            "onclick=\"opendirectory('" + fn + "')\""
+            ">&nbsp;&nbsp;" + fn + " - GOTO ROOT DIR -" + "</div>";
+      fcd += "<div class=\"ccz " + direct + "\">&nbsp;" + " "  + "&nbsp;</div>";
+      fcd += "<div class=\"cct " + direct + "\">&nbsp;" + dispIntDotted(0) + "&nbsp;</div>";
+      fcd += "<div class=\"ccr " + direct + "\">&nbsp;";
+      fcd += "&nbsp;&nbsp;</div>";
+
+      fileManager->sendContent(fcd);
     }
   }
 
