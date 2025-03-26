@@ -25,6 +25,17 @@ String getContentType(const String &path) {
   return "application/octet-stream";
 }
 
+#define jpr(format, ...) \
+    { \
+        char buffer[256]; \
+        snprintf(buffer, sizeof(buffer), format, ##__VA_ARGS__); \
+        Serial.print(buffer); \
+    }
+    
+void print_mem2(const char* text){
+  jpr("%s core: %d, Prio: %d, Internal Free Heap %6d of %6d, SPI Free %6d of %6d\n",text, xPortGetCoreID(), uxTaskPriorityGet(NULL), ESP.getFreeHeap(), ESP.getHeapSize(), ESP.getFreePsram(), ESP.getPsramSize() ); 
+}
+
 /*
   esp32-arduino 3.11 hides getContenttype
   feb 6, 2025
@@ -306,8 +317,9 @@ void ESPxWebFlMgr::fileManagerFileListInsert(void) {  // must get arg with /i to
   using namespace std;
   using records = tuple<String, String, size_t, time_t, int>;
   list<records> dirList;
-  Serial.printf("Internal Total heap %d, internal Free Heap %d, ", ESP.getHeapSize(), ESP.getFreeHeap());
-  Serial.printf("SPIRam Total heap   %d, SPIRam Free Heap   %d\n", ESP.getPsramSize(), ESP.getFreePsram());
+  
+  print_mem2("FileListInsert");
+  
   int xi = 0;
   Dir xdir;
 
@@ -351,32 +363,41 @@ void ESPxWebFlMgr::fileManagerFileListInsert(void) {  // must get arg with /i to
         Serial.printf("Dir removed\n"); Serial.println(nsd + fn);
       } else {
         //Serial.print("Remove dir failed"); Serial.println(nsd + fn);
-        dirList.emplace_back("", xf.name(), xf.size(), xf.getLastWrite(), 1);
-        Serial.printf("Added Sub: "); Serial.println(xf.name());
+
+        String log_name = "/" + String(xf.name()) + "/" + String(xf.name()) + ".999.txt";
+        //Serial.println(log_name);
+        File the_log = ESPxWebFlMgr_FileSystem.open(log_name, "r");
+        time_t the_fold = xf.getLastWrite();
+        time_t the_logfile = the_log.getLastWrite();
+        the_log.close();
+        
+        //Serial.println(the_fold);
+        //Serial.println(the_logfile);
+        if ( the_fold > the_logfile) {
+          dirList.emplace_back("", xf.name(), xf.size(), the_fold, 1);
+        } else {
+          dirList.emplace_back("", xf.name(), xf.size(), the_logfile, 1);
+          //Serial.printf("Log is newer than dir by %d -- ",the_logfile-the_fold);
+        }
+        //Serial.printf("Added Sub: "); Serial.println(xf.name());
       }
 
     } else {
       dirList.emplace_back("", xf.name(), xf.size(), xf.getLastWrite(), 0);
-      Serial.printf("Added: "); Serial.println(xf.name());
+      //Serial.printf("Added: "); Serial.println(xf.name());
     }
 
     xf = xdir.openNextFile();
   }
-  Serial.println();
 
-  Serial.printf("Done the tutples\n");
-  Serial.printf("Internal Total heap %d, internal Free Heap %d, ", ESP.getHeapSize(), ESP.getFreeHeap());
-  Serial.printf("SPIRam Total heap   %d, SPIRam Free Heap   %d\n", ESP.getPsramSize(), ESP.getFreePsram());
+  print_mem2("Done the tuples");
 
   dirList.sort([](const records & f, const records & l) {
     return get<3>(f) > get<3>(l);
     return false;
   });
 
-  Serial.printf("Done the sort\n");
-  Serial.printf("Internal Total heap %d, internal Free Heap %d, ", ESP.getHeapSize(), ESP.getFreeHeap());
-  Serial.printf("SPIRam Total heap   %d, SPIRam Free Heap   %d\n", ESP.getPsramSize(), ESP.getFreePsram());
-
+  print_mem2("Done the sort");
 
   while (dirList.size() > 200) {
     auto iter2 = dirList.back();
@@ -389,9 +410,7 @@ void ESPxWebFlMgr::fileManagerFileListInsert(void) {  // must get arg with /i to
     dirList.pop_back();
   }
 
-  Serial.printf("Done the shrink\n");
-  Serial.printf("Internal Total heap %d, internal Free Heap %d, ", ESP.getHeapSize(), ESP.getFreeHeap());
-  Serial.printf("SPIRam Total heap   %d, SPIRam Free Heap   %d\n", ESP.getPsramSize(), ESP.getFreePsram());
+  print_mem2("Done the shrink");
 
   String fcd;
   String direct = "ccd";   //jz bland color for directory
@@ -422,8 +441,8 @@ void ESPxWebFlMgr::fileManagerFileListInsert(void) {  // must get arg with /i to
   // List files
   int i = 0;
 
-  Serial.printf("Internal Total heap %d, internal Free Heap %d, ", ESP.getHeapSize(), ESP.getFreeHeap());
-  Serial.printf("SPIRam Total heap   %d, SPIRam Free Heap   %d\n", ESP.getPsramSize(), ESP.getFreePsram());
+  //Serial.printf("Internal Total heap %d, internal Free Heap %d, ", ESP.getHeapSize(), ESP.getFreeHeap());
+  //Serial.printf("SPIRam Total heap   %d, SPIRam Free Heap   %d\n", ESP.getPsramSize(), ESP.getFreePsram());
 
   //std::list<records>::iterator &iter2;
   while (dirList.size() > 0) {
@@ -440,8 +459,8 @@ void ESPxWebFlMgr::fileManagerFileListInsert(void) {  // must get arg with /i to
       char ccz[30];
       sprintf(ccz, " %d-%02d-%02d %02d:%02d:%02d\n", (tmstruct->tm_year) + 1900, ( tmstruct->tm_mon) + 1, tmstruct->tm_mday, tmstruct->tm_hour , tmstruct->tm_min, tmstruct->tm_sec);
 
-      char char_fc[400];
-      sprintf(char_fc, "<div class=\"ccl ccd  \"onclick=\"opendirectory('%s%s')\">&nbsp;&nbsp;%s - DIR -</div><div class=\"ccz ccd\">&nbsp;%s&nbsp;</div><div class=\"cct ccd\">&nbsp;&nbsp;</div><div class=\"ccr ccd\">&nbsp;<button title=\"Delete\" onclick=\"deletefile('%s')\" class=\"b\">Del</button> &nbsp;&nbsp;</div>",
+      char char_fc[420];
+      sprintf(char_fc, "<div class=\"ccl ccd  \"onclick=\"opendirectory('%s%s')\">&nbsp;&nbsp;%s - DIR -</div><div class=\"ccz ccd\">&nbsp;%s&nbsp;</div><div class=\"cct ccd\">&nbsp;&nbsp;</div><div class=\"ccr ccd\">&nbsp;<button  title=\"Delete\" onclick=\"deletefile('%s')\" class=\"b\">Del</button> &nbsp;&nbsp;</div>",
               nsd.c_str(), fn.c_str(), fn.c_str(), ccz, fn.c_str());
       fileManager->sendContent(char_fc, strlen(char_fc));
 
@@ -612,7 +631,7 @@ void ESPxWebFlMgr::fileManagerFileListInsert(void) {  // must get arg with /i to
     fileManager->sendContent(F(", pageSize: "));
     fileManager->sendContent(String(info.pageSize));
   */
-  Serial.printf("Done the send, maybe\n");
+  //Serial.printf("Done the send, maybe\n");
   fileManager->sendContent(F("</div></div>"));
   String sinfo = "&nbsp; Size: " +
                  dispFileString(totalBytes()) +
