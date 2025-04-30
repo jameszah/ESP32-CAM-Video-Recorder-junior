@@ -51,6 +51,10 @@
 
 
 */
+// PlatformIO needs the following lines
+#include <Arduino.h>
+void do_eprom_write();
+void deleteFolderOrFile(const char * val);
 
 //#define LOG_LOCAL_LEVEL ESP_LOG_VERBOSE
 #include "esp_log.h"
