@@ -9,6 +9,21 @@ ESP32-CAM-Video-Recorder-junior
   
   Although if you put your ssid and password, and timezone into the config2.txt file, and put that file on the SD card, things will be nicer!  You can read the comments in config2.txt and set your desired recording length, framesize, and internet on/off in there.
 
+## Update Jun 18, 2025
+
+    - Jun 18, 2026 arduino 2.3.1
+            esp32-arduino 3.3.10
+            S3 Version for freenove ESP32S3 https://www.amazon.ca/dp/B0BMQ8F7FN?th=1
+                      or diymore ESP32S3 https://www.amazon.co.uk/dp/B0F4D8ZY6L?th=1
+            ESP32-CAM-Video-Recorder-junior-62 ver v62.S3.01
+            Board Library: ESP32S3 Dev Module
+            Partition Scheme: Minimal SPIFFS 1.9MB App 128KB SPIFFS
+            PSRAM: OPI PSRAM
+            Flash Size: 8MB
+            GPIO 12 for stop/start recording is now GPIO 46
+            Enable the OTA with 192.168.1.123/ota and then change your Port to that to program over network
+            Need the Ping library https://github.com/dvarrel/ESPping
+
 ## Update Feb 25, 2025
 
 New version in v62 folder
